@@ -10,7 +10,7 @@ import {
     FAILED_ADD_FRIEND
 } from "../actions"
 
-const startingState ={
+const friendState ={
     friends: [],
     fetchingFriend: false,
     addingFriend: false,
@@ -19,7 +19,7 @@ const startingState ={
     error: null,
 }
 
- const friendsReducer = (state = startingState, action) =>{
+ const friendsReducer = (state = friendState, action) =>{
     console.log('reducer', action);
     switch(action.type){
         case GET_FRIEND:

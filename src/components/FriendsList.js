@@ -4,7 +4,7 @@ const FriendsList = (props) => {
     console.log(props.friends, "found here")
         return(
         <div className = "friendsDiv">
-        {props.friends.map(friends => (
+        {props.friends && props.friends.map(friends => (
             <div id ={friends.id} key={friends.id}>
                 <div>
                     <p>{friends.name}</p>
