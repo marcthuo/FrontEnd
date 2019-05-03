@@ -114,10 +114,9 @@ export const checkLogin = (index)=> (dispatch)=>{
     .catch(error => {dispatch({type: INCORRECT_LOGIN_INFO, payload: error}); return false})
     
 }
-export const logging = (index)=> (dispatch)=>{
+export const logging = (credentials)=> (dispatch)=>{
     dispatch({type: LOGIN});
-    axios
-    .post(`${URL}/api/auth/login`, index)
+    axios.post(`${URL}/api/auth/login`, credentials)
     .then(response => {dispatch({type: CORRECT_LOGIN, payload: response.data}); return true})
     .catch(error => {dispatch({type: FAILED_LOGIN, payload: error}); return false})
     

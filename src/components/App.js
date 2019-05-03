@@ -7,6 +7,13 @@ import Login from "./login/Login";
 import { NavLink, withRouter } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
+
+
+const accountSid = 'ACfa290d3e1da61a82090e4105886b5fca';
+const authToken = '0ba9d6508c9c3c2c17e8257fd2bc54ef';
+const client = require('twilio')(accountSid, authToken);
+
+
 export class App extends Component {
   
   render() {
