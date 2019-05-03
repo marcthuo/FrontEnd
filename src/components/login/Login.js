@@ -1,30 +1,34 @@
 import React from 'react';
-import {logging} from "../../actions"
+import {logging} from "../../actions";
 import { connect } from "react-redux";
 
 class LoginForm extends React.Component {
     constructor(){
         super();
-        this.state = {
+        this.state = {users: {
             username: "",
             password:"",
-        }
+        }}
     }
+
+    componentDidMount() {
+      this.props.getData();
+    }
+
     changeHandler = e =>{
-       this.setState({
+       this.setState({ users: {
+        ...this.state.users,
          [e.target.name]: e.target.value
+       }
        });
     }
 
-    submitHandler = e =>{
-      e.preventDefault();
-      const{ username, password, id} = this.state;
-      this.logging({ username, password, id});
-      this.setState({ 
-          username:"",
-          password: ""
-      })
-  }
+  
+  submitHandler = e =>{
+    e.preventDefault();
+    this.props.logging(this.state.users);
+    this.props.history.push('/login');
+}
 
   render() {
     return (
@@ -32,7 +36,7 @@ class LoginForm extends React.Component {
         <form onSubmit = {this.submitHandler}>
             <h1>Login</h1>
             <input onChange = {this.changeHandler} type = "text" name = "username" placeholder='Username' value={this.state.username} required/>
-            <input onChange = {this.changeHandler} type = "text" name = "password" placeholder='Password' value={this.state.password} required/>
+            <input onChange = {this.changeHandler} type = "password" name = "password" placeholder='Password' value={this.state.password} required/>
             <button type = "submit">Log in</button>
         </form>
       </div>

@@ -34,6 +34,12 @@ export const FAILED_LOGIN = "FAILED_LOGIN";
 export const GET_LOGIN = "GET_LOGIN"
 export const CORRECT_LOGIN_INFO = "CORRECT_LOGIN_INFO"
 export const INCORRECT_LOGIN_INFO = "INCORRECT_LOGIN_INFO";
+// Data Exports
+export const FETCH_DATA = 'FETCH_DATA';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
+
+
 
 const URL = "https://better-friends.herokuapp.com";
 
@@ -117,7 +123,32 @@ export const checkLogin = (index)=> (dispatch)=>{
 export const logging = (credentials)=> (dispatch)=>{
     dispatch({type: LOGIN});
     axios.post(`${URL}/api/auth/login`, credentials)
-    .then(response => {dispatch({type: CORRECT_LOGIN, payload: response.data}); return true})
+    .then(response => {
+        localStorage.setItem('token', response.data.payload);
+    })
     .catch(error => {dispatch({type: FAILED_LOGIN, payload: error}); return false})
-    
 }
+
+export const getData = () => dispatch => {
+    dispatch({ type: FETCH_DATA });
+    axios
+        .get(`${URL}/`, {
+            headers: {Authorization: localStorage.getItem('token')}
+        })
+        .then(res => {
+            console.log(res);
+            dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data })   
+        })
+        .catch(err => {
+            console.log(err.res);
+            dispatch({ type: FETCH_DATA_FAILURE, payload: err.res });
+        }); 
+};
+
+
+
+
+
+
+
+
