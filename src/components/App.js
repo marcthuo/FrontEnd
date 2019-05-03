@@ -13,7 +13,7 @@ export class App extends Component {
     return (
       <div className= "App">
         <div className = 'nav'>
-          <NavLink className = 'nav-item'to='/'>Home</NavLink>
+          <a href = 'https://modest-shannon-cd3129.netlify.com/'>Home</a>
           <NavLink className = 'nav-item'to = '/friends'>Friends</NavLink>
           <NavLink className = 'nav-item'to = '/family'>Family</NavLink>
           <NavLink className = 'nav-item'to = '/sign-up'>Sign Up</NavLink>

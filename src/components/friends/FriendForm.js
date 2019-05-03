@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-
 class FriendForm extends React.Component {
     constructor(){
         super();
@@ -34,6 +33,7 @@ class FriendForm extends React.Component {
             comment: ""
         })
     }
+    
     render(){
         return(
             <form onSubmit = {this.submitHandler}>
@@ -50,6 +50,15 @@ class FriendForm extends React.Component {
         )
     }
 }
+
+client.messages
+console.log(this.state.phone)
+  .create({
+     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+     from: '+16788318182',
+     to: '+14042003696'
+   })
+  .then(message => console.log(message.sid));
 const mapStateToProps = state =>{
     return {error: state.error}
 }

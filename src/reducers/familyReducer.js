@@ -12,10 +12,10 @@ import {
 
 const familyState ={
     family: [],
-    fetchingFriend: false,
-    addingFriend: false,
-    updatingFriend: false,
-    deletingFriend: false,
+    fetchingFamily: false,
+    addingFamily: false,
+    updatingFamily: false,
+    deletingFamily: false,
     error: null,
 }
 console.log(familyState, "here i am")

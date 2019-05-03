@@ -1,4 +1,5 @@
 import React from 'react';
+import {logging} from "../../actions"
 import { connect } from "react-redux";
 
 class LoginForm extends React.Component {
@@ -18,7 +19,7 @@ class LoginForm extends React.Component {
     submitHandler = e =>{
       e.preventDefault();
       const{ username, password, id} = this.state;
-      this.props.add({ username, password, id});
+      this.logging({ username, password, id});
       this.setState({ 
           username:"",
           password: ""
@@ -40,6 +41,12 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = state =>{
-  return {error: state.error}
-}
-export default connect(mapStateToProps)(LoginForm)
+    console.log(state)
+      return{
+        //   username: state.loginReducer.username,
+        //   password: state.loginReducer.password,
+          fetching: state.fetching, 
+          error: state.error
+      }
+  }
+export default connect(mapStateToProps, {logging})(LoginForm)

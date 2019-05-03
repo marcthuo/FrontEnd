@@ -18,7 +18,7 @@ import { Route, Switch } from 'react-router-dom';
             return (
                 <Switch>
                     <Route exact path="/" component={Component} />
-                    <Route path="/login" component={Login} />
+                    <Route path="/auth/login" component={Login} />
                 </Switch>
             );
         }

@@ -31,7 +31,9 @@ export const FAILED_REMOVE_FAMILY = "FAILED_REMOVE_FAMILY";
 export const LOGIN = "LOGIN";
 export const CORRECT_LOGIN = "CORRECT_LOGIN";
 export const FAILED_LOGIN = "FAILED_LOGIN";
-
+export const GET_LOGIN = "GET_LOGIN"
+export const CORRECT_LOGIN_INFO = "CORRECT_LOGIN_INFO"
+export const INCORRECT_LOGIN_INFO = "INCORRECT_LOGIN_INFO";
 
 const URL = "https://better-friends.herokuapp.com";
 
@@ -48,7 +50,7 @@ export const addFriend = (index)=> (dispatch)=>{
     dispatch({type: ADD_FRIEND});
     axios
     .post(`${URL}/api/friends`, index)
-    .then(response => {dispatch({type: CORRECT_ADD_FRIEND, payload: response.data},console.log(response.data, "logging data here")); return true})
+    .then(response => {dispatch({type: CORRECT_ADD_FRIEND, payload: response.data}); return true})
     .catch(error => {dispatch({type: FAILED_ADD_FRIEND, payload: error}); return false})
     
 }
@@ -74,7 +76,7 @@ export const addUser = (index)=> (dispatch)=>{
     dispatch({type: ADD_USER});
     axios
     .post(`${URL}/api/auth/register`, index)
-    .then(response => {dispatch({type: CORRECT_ADD_USER, payload: response.data},console.log(response.data, "logging user data here")); return true})
+    .then(response => {dispatch({type: CORRECT_ADD_USER, payload: response.data}); return true})
     .catch(error => {dispatch({type: FAILED_ADD_USER, payload: error}); return false})
 }
 
@@ -91,7 +93,7 @@ export const addFamily = (index)=> (dispatch)=>{
     dispatch({type: ADD_FAMILY});
     axios
     .post(`${URL}/api/family`, index)
-    .then(response => {dispatch({type: CORRECT_ADD_FAMILY, payload: response.data},console.log(response.data, "logging data here")); return true})
+    .then(response => {dispatch({type: CORRECT_ADD_FAMILY, payload: response.data}); return true})
     .catch(error => {dispatch({type: FAILED_ADD_FAMILY, payload: error}); return false})
     
 }
@@ -104,12 +106,19 @@ export const removeFamily= (members) => (dispatch)=>{
     .catch(error => {dispatch({type: FAILED_REMOVE_FAMILY, payload: error}); return false})
 }
 //---------------------------------------------------------Login Actions-----------------------------------------//
-
+export const checkLogin = (index)=> (dispatch)=>{
+    dispatch({type: GET_LOGIN});
+    axios
+    .get(`${URL}/api/auth/login`, index)
+    .then(response => {dispatch({type: CORRECT_LOGIN_INFO, payload: response.data}); return true})
+    .catch(error => {dispatch({type: INCORRECT_LOGIN_INFO, payload: error}); return false})
+    
+}
 export const logging = (index)=> (dispatch)=>{
     dispatch({type: LOGIN});
     axios
     .post(`${URL}/api/auth/login`, index)
-    .then(response => {dispatch({type: CORRECT_LOGIN, payload: response.data},console.log(response.data)); return true})
+    .then(response => {dispatch({type: CORRECT_LOGIN, payload: response.data}); return true})
     .catch(error => {dispatch({type: FAILED_LOGIN, payload: error}); return false})
     
 }
