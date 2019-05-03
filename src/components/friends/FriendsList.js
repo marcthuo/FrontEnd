@@ -1,7 +1,9 @@
 import React from "react";
 
+
 const FriendsList = (props) => {
     console.log(props.friends, "found here")
+    console.log( props)
         return(
         <div className = "friendsDiv">
         {props.friends && props.friends.map(friends => (
@@ -22,4 +24,4 @@ const FriendsList = (props) => {
     );
 }
 
-export default FriendsList;
+export default (FriendsList);

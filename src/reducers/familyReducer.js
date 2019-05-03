@@ -1,88 +1,88 @@
 import { 
-    GET_FRIEND, 
-    CORRECT_GET_FRIEND, 
-    FAILED_GET_FRIEND, 
-    ADD_FRIEND, 
-    REMOVE_FRIEND,
-    FAILED_REMOVE_FRIEND, 
-    CORRECT_REMOVE_FRIEND,
-    CORRECT_ADD_FRIEND,
-    FAILED_ADD_FRIEND
+    GET_FAMILY, 
+    CORRECT_GET_FAMILY, 
+    FAILED_GET_FAMILY, 
+    ADD_FAMILY, 
+    REMOVE_FAMILY,
+    FAILED_REMOVE_FAMILY, 
+    CORRECT_REMOVE_FAMILY,
+    CORRECT_ADD_FAMILY,
+    FAILED_ADD_FAMILY
 } from "../actions"
 
-const friendState ={
-    friends: [],
+const familyState ={
+    family: [],
     fetchingFriend: false,
     addingFriend: false,
     updatingFriend: false,
     deletingFriend: false,
     error: null,
 }
-console.log(friendState, "here i am")
- const friendsReducer = (state = friendState, action) =>{
+console.log(familyState, "here i am")
+ const familyReducer = (state = familyState, action) =>{
     console.log('reducer', action);
     switch(action.type){
-        case GET_FRIEND:
+        case GET_FAMILY:
         return{
             ...state,
             error: "",
             fetching: true
         };
-        case ADD_FRIEND:
+        case ADD_FAMILY:
         return{
             ...state,
             fetching: true
         };
-        case REMOVE_FRIEND:
+        case REMOVE_FAMILY:
         return{
             ...state,
             fetching: true
         };
-        case CORRECT_GET_FRIEND:
+        case CORRECT_GET_FAMILY:
         console.log(action.payload)
         console.log(state)
         return{
             ...state,
-            friends: action.payload,
+            family: action.payload,
             fetching: false,
             error: ""
         };
-        case FAILED_GET_FRIEND:
+        case FAILED_GET_FAMILY:
         return{
             ...state,
             error: action.payload,
             fetching: false
         };
-        case CORRECT_ADD_FRIEND:
+        case CORRECT_ADD_FAMILY:
         console.log(action.payload)
         console.log(state)
         return{
             ...state,
-            friends:  [...state.friends, action.payload],
+            family:  [...state.family, action.payload],
             fetching: false,
             error: ""
         };
-        case FAILED_ADD_FRIEND:
+        case FAILED_ADD_FAMILY:
         return{
             ...state,
             error: action.payload,
             fetching: false
         };
-        case FAILED_REMOVE_FRIEND:
+        case FAILED_REMOVE_FAMILY:
         return{
             ...state,
             fetching: false,
             error: action.payload
         }
-        case CORRECT_REMOVE_FRIEND:
+        case CORRECT_REMOVE_FAMILY:
         return {
             ...state,
             fetching: false,
             error: "",
-            friends: state.friends.filter(member =>(member.id !== action.payload))
+            family: state.family.filter(member =>(member.id !== action.payload))
         }
         default:
         return{...state};
     }
 };
-export default friendsReducer;
+export default familyReducer;

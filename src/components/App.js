@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { addFriend, getFriendEvent, removeFriend } from "../actions";
-import FriendsList from "./FriendsList";
-import FriendForm from "./FriendForm";
+import FamilyPage from "./family/FamilyPage";
+import FriendsPage from "./friends/FriendsPage";
+import SignupPage from "./signUp/SignupPage";
+import Login from "./login/Login";
+import { NavLink, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 export class App extends Component {
-  componentDidMount(){
-      this.props.getFriendEvent()
-  }
-  removeFriends= (event, index) =>{
-      event.preventDefault()
-      this.props.removeFriend(index)
-  }
-  addingFriends = (friend) =>{
-    this.props.addFriend(friend);
-
-  }
-
   
   render() {
     return (
       <div className= "App">
         <h1>Events To Remember</h1>
-        <FriendForm adding={this.addingFriends}/>
-        <FriendsList delete = {this.removeFriends} friends={this.props.friends}/>
+        <div className = 'nav'>
+          <NavLink className = 'nav-item'to='/'>Home</NavLink>
+          <NavLink className = 'nav-item'to = '/friends'>Friends</NavLink>
+          <NavLink className = 'nav-item'to = '/family'>Family</NavLink>
+          <NavLink className = 'nav-item'to = '/sign-up'>Sign Up</NavLink>
+          <NavLink className = 'nav-item'to = '/login'>Login</NavLink>
+        </div>  
+      <Route path ={"/friends"} render= {props =>(<FriendsPage {...props}/>)}/>
+      <Route path ={"/family"} render= {props =>(<FamilyPage {...props}/>)}/>
+      <Route path ={"/sign-up"} render= {props =>(<SignupPage {...props}/>)}/>
+      <Route path ={"/login"} render= {props =>(<Login {...props}/>)}/>
       </div>
     );
   }
@@ -31,9 +31,8 @@ export class App extends Component {
  const mapStateToProps = state =>{
    console.log(state)
      return{
-         friends: state.friendsReducer.friends,
          fetching: state.fetching,
          error: state.error
      }
  }
-export default connect(mapStateToProps, { addFriend, getFriendEvent, removeFriend})(App)
+export default connect(mapStateToProps) (withRouter(App))

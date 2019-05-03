@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from "react-redux";
 
-class SignupForm extends React.Component {
+class LoginForm extends React.Component {
     constructor(){
         super();
         this.state = {
             username: "",
-            password:""
+            password:"",
         }
     }
     changeHandler = e =>{
@@ -29,10 +29,10 @@ class SignupForm extends React.Component {
     return (
       <div>
         <form onSubmit = {this.submitHandler}>
-            <h1>Sign Up Here.</h1>
+            <h1>Login</h1>
             <input onChange = {this.changeHandler} type = "text" name = "username" placeholder='Username' value={this.state.username} required/>
             <input onChange = {this.changeHandler} type = "text" name = "password" placeholder='Password' value={this.state.password} required/>
-            <button type = "submit">Sign Up</button>
+            <button type = "submit">Log in</button>
         </form>
       </div>
     )
@@ -42,4 +42,4 @@ class SignupForm extends React.Component {
 const mapStateToProps = state =>{
   return {error: state.error}
 }
-export default connect(mapStateToProps)(SignupForm)
+export default connect(mapStateToProps)(LoginForm)
