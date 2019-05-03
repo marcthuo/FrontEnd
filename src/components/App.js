@@ -12,7 +12,6 @@ export class App extends Component {
   render() {
     return (
       <div className= "App">
-        <h1>Events To Remember</h1>
         <div className = 'nav'>
           <NavLink className = 'nav-item'to='/'>Home</NavLink>
           <NavLink className = 'nav-item'to = '/friends'>Friends</NavLink>
